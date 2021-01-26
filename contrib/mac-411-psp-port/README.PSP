@@ -1,0 +1,2 @@
+To compile:
+cd MACLib/; make clean all

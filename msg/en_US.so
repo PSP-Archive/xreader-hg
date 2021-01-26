@@ -1,0 +1,1198 @@
+#: scene.c:108 scene.c:207
+msgid "是否退出软件?"
+msgstr "Exit xReader?"
+
+#: scene.c:108 scene.c:207 scene.c:530 scene.c:544 scene.c:861 scene.c:864
+#: scene.c:1446 scene.c:1457 scene.c:1459 scene.c:1461 scene.c:1496
+#: scene.c:1857 scene.c:2019 scene.c:2192 scene.c:2197 scene.c:2224
+#: scene.c:2985 scene.c:3301 scene.c:3616 scene.c:3665 scene.c:3683
+#: scene.c:3731 scene.c:3737 scene.c:3813 scene.c:3821 scene.c:4579
+#: scene.c:4841 scene.c:4881
+msgid "是"
+msgstr "Yes"
+
+#: scene.c:108 scene.c:207 scene.c:530 scene.c:544 scene.c:862 scene.c:865
+#: scene.c:1446 scene.c:1457 scene.c:1459 scene.c:1461 scene.c:1497
+#: scene.c:1857 scene.c:2019 scene.c:2192 scene.c:2197 scene.c:2224
+#: scene.c:2985 scene.c:3301 scene.c:3616 scene.c:3665 scene.c:3684
+#: scene.c:3732 scene.c:3738 scene.c:3814 scene.c:3822 scene.c:4579
+#: scene.c:4841 scene.c:4881
+msgid "否"
+msgstr "No"
+
+#: scene.c:223 scene.c:372 scene_image.c:1015
+msgid "请按对应按键"
+msgstr "Press corresponding key"
+
+#: scene.c:295 scene.c:444 scene_image.c:1085
+msgid "按键设置   △ 删除"
+msgstr "Button Settings △ Delete"
+
+#: scene.c:306 scene.c:455
+msgid " | "
+msgstr " | "
+
+#: scene.c:319
+msgid "书签菜单"
+msgstr "Bookmark Menu"
+
+#: scene.c:320
+msgid "  上一页"
+msgstr "Prev Page"
+
+#: scene.c:321
+msgid "  下一页"
+msgstr "Next Page"
+
+#: scene.c:322
+msgid " 前100行"
+msgstr "Prev 100 lines"
+
+#: scene.c:323
+msgid " 后100行"
+msgstr "Next 100 lines"
+
+#: scene.c:324
+msgid " 前500行"
+msgstr "Prev 500 lines"
+
+#: scene.c:325
+msgid " 后500行"
+msgstr "Next 500 lines"
+
+#: scene.c:326
+msgid "  第一页"
+msgstr "First page"
+
+#: scene.c:327
+msgid "最后一页"
+msgstr "Last page"
+
+#: scene.c:328
+msgid "上一文件"
+msgstr "Prev file"
+
+#: scene.c:329
+msgid "下一文件"
+msgstr "Next file"
+
+#: scene.c:330
+msgid "退出阅读"
+msgstr "Exit reading"
+
+#: scene.c:331
+msgid "切换翻页"
+msgstr "Switch page"
+
+#: scene.c:468
+msgid "    选定"
+msgstr "Choose"
+
+#: scene.c:469
+msgid "  第一项"
+msgstr "First item"
+
+#: scene.c:470
+msgid "最后一项"
+msgstr "Last item"
+
+#: scene.c:471
+msgid "上级目录"
+msgstr "Parent dir"
+
+#: scene.c:472
+msgid "刷新列表"
+msgstr "Refresh list"
+
+#: scene.c:473
+msgid "文件操作"
+msgstr "File operation"
+
+#: scene.c:474
+msgid "选择文件"
+msgstr "Select file"
+
+#: scene.c:530
+msgid "是否取消背景图？"
+msgstr "Cancel the background image display?"
+
+#: scene.c:532
+msgid "取消背景图"
+msgstr "Cancel the background image"
+
+#: scene.c:543
+msgid "是否将当前图片文件设为背景图？"
+msgstr "Set the image as background image?"
+
+#: scene.c:828
+msgid "看图选项"
+msgstr "Image operation"
+
+#: scene.c:836 scene_image.c:343 scene_image.c:347
+msgid "三次立方"
+msgstr "bicubic"
+
+#: scene.c:836 scene_image.c:343 scene_image.c:347
+msgid "两次线性"
+msgstr "linear"
+
+#: scene.c:839
+msgid "秒"
+msgstr "seconds"
+
+#: scene.c:873
+msgid "    缩放算法"
+msgstr "Zoom algorithm"
+
+#: scene.c:874
+msgid "幻灯播放间隔"
+msgstr "Slideshow interval"
+
+#: scene.c:875
+msgid "图片起始位置"
+msgstr "Image originate position"
+
+#: scene.c:876
+msgid "    卷动速度"
+msgstr "Rolling speed"
+
+#: scene.c:877
+msgid "    翻页模式"
+msgstr "Switch page mode"
+
+#: scene.c:878
+msgid "翻动保留宽度"
+msgstr "Rolling reserve width"
+
+#: scene.c:879
+msgid "  缩略图查看"
+msgstr "Thumbnail Viewing"
+
+#: scene.c:880
+msgid "    图像亮度"
+msgstr "Image brightness"
+
+#: scene.c:881 scene.c:1540
+msgid "  启用类比键"
+msgstr "Enable analogy key"
+
+#: scene.c:882
+msgid "查看EXIF信息"
+msgstr "View EXIF inf"
+
+#: scene.c:1197
+msgid "颜色选项"
+msgstr "Color settings"
+
+#: scene.c:1237 scene.c:1644 scene.c:2022 scene.c:2200
+msgid "不支持"
+msgstr "not-supported"
+
+#: scene.c:1247
+msgid "字体颜色"
+msgstr "Font color"
+
+#: scene.c:1247 scene.c:1253
+msgid "红"
+msgstr "Red"
+
+#: scene.c:1249 scene.c:1256 scene.c:1259
+msgid "绿"
+msgstr "Green"
+
+#: scene.c:1251 scene.c:1262
+msgid "蓝"
+msgstr "Blue"
+
+#: scene.c:1253
+msgid "背景颜色"
+msgstr "Background color"
+
+#: scene.c:1256
+msgid "灰度色"
+msgstr "Grayness level"
+
+#: scene.c:1264
+msgid "  背景图灰度"
+msgstr "Background image grayness"
+
+#: scene.c:1437
+msgid "阅读选项"
+msgstr "Reading settings"
+
+#: scene.c:1449
+msgid "颠倒"
+msgstr "reverse"
+
+#: scene.c:1452
+msgid "左向"
+msgstr "left-orient"
+
+#: scene.c:1453
+msgid "右向"
+msgstr "right-orient"
+
+#: scene.c:1453
+msgid "无"
+msgstr "none"
+
+#: scene.c: 1473
+msgid "自动翻页"
+msgstr "Auto page"
+
+#: scene.c:1464
+msgid "下篇文章"
+msgstr "Next article"
+
+#: scene.c:1464
+msgid "无动作"
+msgstr "no action"
+
+#: scene.c:1483 scene.c:1492 scene.c:1860 scene.c:2205
+msgid "已关闭"
+msgstr "closed"
+
+#: scene.c:2207
+msgid "%d分钟"
+msgstr "%d minutes"
+
+#: scene.c:1526
+msgid "      信息栏"
+msgstr "Info bar"
+
+#: scene.c:1527
+msgid "翻页保留一行"
+msgstr "Switch page reserve for 1 line"
+
+#: scene.c:1528
+msgid "    文字竖看"
+msgstr "Text orient"
+
+#: scene.c:1529
+msgid "    文字编码"
+msgstr "Text encoding"
+
+#: scene.c:1530
+msgid "      滚动条"
+msgstr "Scroll bar"
+
+#: scene.c:1531
+msgid "自动保存书签"
+msgstr "Automatic save bookmark"
+
+#: scene.c:1532
+msgid "重新编排文本"
+msgstr "Re-arrange text"
+
+#: scene.c:1533
+msgid "文章末尾翻页"
+msgstr "When reach the end of article"
+
+#: scene.c:1534
+msgid "自动翻页模式"
+msgstr "Auto-page mode"
+
+#: scene.c:1536
+msgid "    翻页时间"
+msgstr "Page time"
+
+#: scene.c:1538
+msgid "    滚屏速度"
+msgstr "Rolling speed"
+
+#: scene.c:1539
+msgid "    滚屏时间"
+msgstr "Scroll delay"
+
+#: scene.c:1632
+msgid "操作设置"
+msgstr "Operation Settings"
+
+#: scene.c:1641
+msgid "控制翻页"
+msgstr "Control page"
+
+#: scene.c:1641
+msgid "控制音乐"
+msgstr "Control music"
+
+#: scene.c:1653
+msgid "    线控模式"
+msgstr "Line control mode"
+
+#: scene.c:1828
+msgid "字体设置"
+msgstr "Font settings"
+
+#: scene.c:1869
+msgid "菜单字体大小"
+msgstr "Menu font size"
+
+#: scene.c:1870
+msgid "阅读字体大小"
+msgstr "Reading font size"
+
+#: scene.c:1871
+msgid "      字间距"
+msgstr "Font gap"
+
+#: scene.c:1872
+msgid "      行间距"
+msgstr "Line gap"
+
+#: scene.c:1873
+msgid "    保留边距"
+msgstr "Reserve gap"
+
+#: scene.c:1874
+msgid " 使用TTF字体"
+msgstr "Use TTF font"
+
+#: scene.c:2011
+msgid "音乐设置"
+msgstr "Music settings"
+
+#: scene.c:2037
+msgid "自动开始播放"
+msgstr "Auto play"
+
+#: scene.c:2038
+msgid "歌词显示行数"
+msgstr "Lyrics display lines"
+
+#: scene.c:2039
+msgid "歌词显示编码"
+msgstr "Lyric encoding settings"
+
+#: scene.c:2179
+msgid "系统选项"
+msgstr "System settings"
+
+#: scene.c:2186 scene.c:2188 scene.c:2190
+msgid "显示"
+msgstr "Display"
+
+#: scene.c:2186 scene.c:2188 scene.c:2190
+msgid "隐藏"
+msgstr "Hidden"
+
+#: scene.c:2235
+msgid "    隐藏文件"
+msgstr "Hidden file"
+
+#: scene.c:2236
+msgid "未知类型文件"
+msgstr "Unknown type file"
+
+#: scene.c:2237
+msgid "    文件信息"
+msgstr "File info"
+
+#: scene.c:2238
+msgid "    允许删除"
+msgstr "Allow delete"
+
+#: scene.c:2239
+msgid "文件排序方式"
+msgstr "File arrange type"
+
+#: scene.c:2240
+msgid "    USB 连接"
+msgstr "USB Connection"
+
+#: scene.c:2241
+msgid "    自动休眠"
+msgstr "Auto sleep"
+
+#: scene.c:2242
+msgid "设置最低频率"
+msgstr "Set minimize frequency"
+
+#: scene.c:2243
+msgid "设置普通频率"
+msgstr "Set normal frequency"
+
+#: scene.c:2244
+msgid "设置最高频率"
+msgstr "Set maximize frequency"
+
+#: scene.c:2245
+msgid "禁用屏幕保护"
+msgstr "Disable Screen-saver"
+
+#: scene.c:2246
+msgid "启动程序类型"
+msgstr "Launch homebrew type"
+
+#: scene.c:2342 scene.c:2940
+msgid "保存文件位置"
+msgstr "Save file location"
+
+#: scene.c:2378
+msgid "未使用"
+msgstr "Unused"
+
+#: scene.c:2559 scene.c:2941
+msgid "读取文件位置"
+msgstr "Read file location"
+
+#: scene.c:2604
+msgid "设置管理"
+msgstr "Settings manager"
+
+#: scene.c:2612
+#, c-format
+msgid "%d号设置"
+msgstr "Setting %d"
+
+#: scene.c:2643 scene.c:5194
+#, c-format
+msgid "亮度设置为%d"
+msgstr "set brightness as %d"
+
+#: scene.c:2749
+msgid "读取设置失败!"
+msgstr "Config load failed!"
+
+#: scene.c:2758
+msgid "保存设置失败!"
+msgstr "Config save failed!"
+
+#: scene.c:2765
+msgid "删除设置失败!"
+msgstr "Config delete failed!"
+
+#: scene.c:2782
+msgid "读取设置"
+msgstr "Read settings"
+
+#: scene.c:2783
+msgid "保存设置"
+msgstr "Save settings"
+
+#: scene.c:2784
+msgid "删除设置"
+msgstr "Delete settings"
+
+#: scene.c:2860
+msgid "调试信息"
+msgstr "Debug info"
+
+#: scene.c:2907
+msgid "设置选项"
+msgstr "Settings"
+
+#: scene.c:2921
+msgid "  字体设置"
+msgstr "Font settings"
+
+#: scene.c:2922
+msgid "  颜色设置"
+msgstr "Color settings"
+
+#: scene.c:2923
+msgid "  系统选项"
+msgstr "System settings"
+
+#: scene.c:2924
+msgid "  系统按键"
+msgstr "Button settings"
+
+#: scene.c:2925
+msgid "  阅读选项"
+msgstr "Read settings"
+
+#: scene.c:2926
+msgid "  阅读按键"
+msgstr "Read button settings"
+
+#: scene.c:2928
+msgid "  看图选项"
+msgstr "Image settings"
+
+#: scene.c:2929
+msgid "  看图按键"
+msgstr "Image button settings"
+
+#: scene.c:2931 scene.c:2932
+msgid "*看图已关闭*"
+msgstr "*Image closed*"
+
+#: scene.c:2934
+msgid "  操作设置"
+msgstr "Operation settings"
+
+#: scene.c:2936
+msgid "  音乐播放"
+msgstr "Music playback"
+
+#: scene.c:2938
+msgid "*音乐已关闭*"
+msgstr "*Music closed*"
+
+#: scene.c:2942
+msgid "  设置管理"
+msgstr "Settings manager"
+
+#: scene.c:2943
+msgid "  退出软件"
+msgstr "Exit xReader"
+
+#: scene.c:2945
+msgid "查看调试信息"
+msgstr "View debug info"
+
+#: scene.c:2980
+msgid "已删除书签!"
+msgstr "Bookmark deleted!"
+
+#: scene.c:2985
+msgid "是否要导出书签？"
+msgstr "Export bookmark?"
+
+#: scene.c:2997
+msgid "已导出书签!"
+msgstr "Bookmark exported!"
+
+#: scene.c:3009 scene.c:3106
+msgid "  NONE "
+msgstr "  NONE "
+
+#: scene.c:3031
+msgid "书签      ○读取  ×取消  □保存  △删除"
+msgstr "Bookmark ○ Read × Cancel □ Save △ Delete"
+
+#: scene.c:3043
+msgid "SELECT 删除全部书签    START 导出书签"
+msgstr "SELECT Delete all bms. START Export bms."
+
+#: scene.c:3095
+msgid "无法打开书签!"
+msgstr "Can't open bookmark!"
+
+#: scene.c:3300
+#, c-format
+msgid "是否覆盖文件%s？"
+msgstr "Overwrite file %s?"
+
+#: scene.c:3358
+msgid "文件解压失败!"
+msgstr "File extract failed!"
+
+#: scene.c:3377
+msgid "文件/目录复制失败!"
+msgstr "File/Dir copy failed!"
+
+#: scene.c:3453
+msgid "△  退出操作"
+msgstr "△ Exit"
+
+#: scene.c:3460 scene.c:3564
+msgid "○  导入书签"
+msgstr "○ Import bms."
+
+#: scene.c:3463 scene.c:3556 scene.c:3566
+msgid "□  导入书签"
+msgstr "□ Export bms."
+
+#: scene.c:3469
+msgid "○  进入目录"
+msgstr "○ Enter dir"
+
+#: scene.c:3474 scene.c:3513 scene.c:3561
+msgid "□  添加音乐"
+msgstr "□ Add music"
+
+#: scene.c:3482
+msgid "○  继续播放"
+msgstr "○ Continue playback"
+
+#: scene.c:3485
+msgid "□  从头播放"
+msgstr "□ Replay"
+
+#: scene.c:3495
+msgid "○  进入文档"
+msgstr "○ Enter document"
+
+#: scene.c:3498
+msgid "□  进入文档"
+msgstr "□  Enter document"
+
+#: scene.c:3510
+msgid "○  直接播放"
+msgstr "○ Direct play"
+
+#: scene.c:3526
+msgid "○  查看图片"
+msgstr "○ View image"
+
+#: scene.c:3531
+msgid "□  设为背景"
+msgstr "□  Set as background image"
+
+#: scene.c:3538
+msgid "SELECT EXIF"
+msgstr "SELECT EXIF"
+
+#: scene.c:3545
+msgid "○  阅读文本"
+msgstr "○  Read text"
+
+#: scene.c:3548
+msgid "□  阅读文本"
+msgstr "□  Read text as txt"
+
+#: scene.c:3554 scene.c:3559
+msgid "○  添加音乐"
+msgstr "○  Add music"
+
+#: scene.c:3575
+msgid "×    删除"
+msgstr "× Delete"
+
+#: scene.c:3578
+msgid " R    剪切"
+msgstr " R Cut"
+
+#: scene.c:3582 scene.c:3596
+msgid " L    复制"
+msgstr "L Copy"
+
+#: scene.c:3589
+msgid "START 粘贴"
+msgstr "START Paste"
+
+#: scene.c:3616
+msgid "删除所选文件？"
+msgstr "Delete selection?"
+
+#: scene.c:3628
+msgid "删除目录失败!"
+msgstr "Delete dir failed!"
+
+#: scene.c:3634
+msgid "删除文件失败!"
+msgstr "Delete file failed!"
+
+#: scene.c:3664
+msgid "添加目录内所有歌曲到播放列表？"
+msgstr "Add all the musics in this dir?"
+
+#: scene.c:3673 scene.c:3696 scene.c:3797 scene.c:3882
+msgid "已添加歌曲到列表!"
+msgstr "Have added musics to playlist!"
+
+#: scene.c:3683 scene.c:3737 scene.c:3821
+msgid "添加歌曲到播放列表？"
+msgstr "Add the music to playlist? "
+
+#: scene.c:3731 scene.c:3813 scene.c:4841
+msgid "是否要导入书签？"
+msgstr "Import bookmark?"
+
+#: scene.c:3793 scene.c:3878 scene.c:4848
+msgid "已导入书签!"
+msgstr "Bookmark exported!"
+
+#: scene.c:3984
+msgid "文件/目录移动失败!"
+msgstr "File/Dir move failed!"
+
+#: scene.c:4053 scene.c:4056
+#, c-format
+msgid "%s的EXIF信息"
+msgstr "EXIF for file %s"
+
+#: scene.c:4074
+msgid "无EXIF信息"
+msgstr "No EXIF info"
+
+#: scene.c:4170
+msgid " 调试版"
+msgstr " Debug Version"
+
+#: scene.c:4193
+msgid "START 音乐播放控制   SELECT 选项   选项内按○进入设置"
+msgstr "START Music play control   SELECT Settings   Press ○ to enter setting"
+
+#: scene.c:4216 scene.c:4257
+#, c-format
+msgid "文件大小: %u 字节\n"
+msgstr "File size: %u bytes\n"
+
+#: scene.c:4222 scene.c:4263
+#, c-format
+msgid "创建时间: %04d-%02d-%02d %02d:%02d:%02d\n"
+msgstr "Creation time: %04d-%02d-%02d %02d:%02d:%02d\n"
+
+#: scene.c:4233 scene.c:4274
+#, c-format
+msgid "最后修改: %04d-%02d-%02d %02d:%02d:%02d\n"
+msgstr "Last modifiied: %04d-%02d-%02d %02d:%02d:%02d\n"
+
+#: scene.c:4288
+#, c-format
+msgid "文件大小: %s 字节\n"
+msgstr "File size: %s bytes\n"
+
+#: scene.c:4351
+#, c-format
+msgid "%s: 方法%d启动错误, 返回错误代码: %08x"
+msgstr "%s: Method %d startup error, return erorr code: %08x"
+
+#: scene.c:4475
+#, c-format
+msgid "%s压缩包格式损坏"
+msgstr "%s archive format error"
+
+#: scene.c:4575
+#, c-format
+msgid "是否以%s方式执行该程序?"
+msgstr "Execute the homebrew as %s type?"
+
+#: scene.c:4577
+msgid "普通程序"
+msgstr "Normal program"
+
+#: scene.c:4577
+msgid "PS游戏"
+msgstr "PS game"
+
+#: scene.c:4881
+msgid "是否为中文字体？"
+msgstr "Is it a CJK fonts?"
+
+#: scene_image.c:109
+msgid "格式错误"
+msgstr "Format error"
+
+#: scene_image.c:113
+msgid "内存不足"
+msgstr "Memory not enough"
+
+#: scene_image.c:116
+msgid "不明"
+msgstr "Unknown"
+
+#: scene_image.c:119
+#, c-format
+msgid "图像无法装载, 原因: %s"
+msgstr "Image can't load, reason: %s"
+
+#: scene_image.c:122
+#, c-format
+msgid "图像无法装载，原因: %s where = %d config.path %s filename %s"
+msgstr "Image can't load, reason: %s where = %d config.path %s filename %s"
+
+#: scene_image.c:341
+#, c-format
+msgid "%dx%d  %d%%  旋转角度 %d  %s"
+msgstr "%dx%d  %d%%  Rotation angle %d  %s"
+
+#: scene_image.c:345
+#, c-format
+msgid "%dx%d  %s  旋转角度 %d  %s"
+msgstr "%dx%d  %s  Rotation angle %d  %s"
+
+#: scene_image.c:815 scene_image.c:840
+msgid "幻灯片播放已经停止！"
+msgstr "Slideshow stopped!"
+
+#: scene_image.c:928
+#, c-format
+msgid "装载图像时间: %.2f秒"
+msgstr "Loading image time: %.2f seconds"
+
+#: scene_image.c:936
+#, c-format
+msgid "旋转图像时间: %.2f秒"
+msgstr "Rotation image time: %.2f seconds"
+
+#: scene_image.c:1109
+msgid "上一张图"
+msgstr "Prev image"
+
+#: scene_image.c:1110
+msgid "下一张图"
+msgstr "Next image"
+
+#: scene_image.c:1111
+msgid "缩放模式"
+msgstr "Zoom mode"
+
+#: scene_image.c:1112
+msgid "缩小图片"
+msgstr "Zoom out"
+
+#: scene_image.c:1113
+msgid "放大图片"
+msgstr "Zoom in"
+
+#: scene_image.c:1114
+msgid "左旋90度"
+msgstr "Countclockwise 90"
+
+#: scene_image.c:1115
+msgid "右旋90度"
+msgstr "Clockwise 90"
+
+#: scene_image.c:1116
+msgid "  信息栏"
+msgstr "Info bar"
+
+#: scene_image.c:1117
+msgid "显示信息"
+msgstr "Display info"
+
+#: scene_image.c:1118
+msgid "退出浏览"
+msgstr "Exit browse"
+
+#: scene_image.c:1119
+msgid "缩放引擎"
+msgstr "Zoom algorithm"
+
+#: scene_image.c:1120
+msgid "幻灯播放"
+msgstr "Slideshow playback"
+
+#: scene_text.c:142 scene_text.c:256
+#, c-format
+msgid "%s: 时间 %d 速度 %d"
+msgstr "%s: time %d speed %d"
+
+#: scene_text.c:142 scene_text.c:256 scene.c:1470
+msgid "自动滚屏"
+msgstr "Auto rolling"
+
+#: scene_text.c:148 scene_text.c:262
+#, c-format
+msgid "自动翻页: 时间 %d"
+msgstr "Auto page: interval %d"
+
+#: scene_text.c:553 scene_text.c:1261
+msgid "文件打开失败"
+msgstr "File open failed"
+
+#: scene_text.c:554
+#, c-format
+msgid "scene_book_reload: 文件%s打开失败 where=%d"
+msgstr "scene_book_reload: file %s open failed where=%d"
+
+#: scene_text.c:1263
+#, c-format
+msgid "scene_readbook_raw: 文件%s打开失败 where=%d"
+msgstr "scene_readbook_raw: file %s open failed where=%d"
+
+#: conf.c:1317
+msgid "原始大小"
+msgstr "Orginal size"
+
+#: conf.c:1320
+msgid "适应宽度"
+msgstr "Fit to width"
+
+#: conf.c:1323
+msgid "适应两倍宽度"
+msgstr "Fit to twice width"
+
+#: conf.c:1326
+msgid "适应高度"
+msgstr "Fit to height"
+
+#: conf.c:1329
+msgid "适应两倍高度"
+msgstr "Fit to twice height"
+
+#: conf.c:1344
+msgid "顺序播放"
+msgstr "Normal"
+
+#: conf.c:1346
+msgid "循环播放"
+msgstr "Repeat-all"
+
+#: conf.c:1348
+msgid "循环单曲"
+msgstr "Repeat-one"
+
+#: conf.c:1350
+msgid "随机播放"
+msgstr "Shuffle"
+
+#: conf.c:1360
+msgid "按扩展名"
+msgstr "As extension"
+
+#: conf.c:1363
+msgid "按文件名"
+msgstr "As filename"
+
+#: conf.c:1366
+msgid "按文件大小"
+msgstr "As file size"
+
+#: conf.c:1369
+msgid "按创建时间"
+msgstr "As creation time"
+
+#: conf.c:1372
+msgid "按修改时间"
+msgstr "As modified time"
+
+#: conf.c:1383
+msgid "左上"
+msgstr "Left-up"
+
+#: conf.c:1385
+msgid "中上"
+msgstr "Mid-up"
+
+#: conf.c:1387
+msgid "右上"
+msgstr "Right-up"
+
+#: conf.c:1389
+msgid "左中"
+msgstr "Left-mid"
+
+#: conf.c:1391
+msgid "正中"
+msgstr "Center"
+
+#: conf.c:1393
+msgid "右中"
+msgstr "Right-middle"
+
+#: conf.c:1395
+msgid "左下"
+msgstr "Left-buttom"
+
+#: conf.c:1397
+msgid "中下"
+msgstr "Middle-buttom"
+
+#: conf.c:1399
+msgid "右下"
+msgstr "Right-buttom"
+
+#: conf.c:1409
+msgid "直接翻页"
+msgstr "Direct next page"
+
+#: conf.c:1411
+msgid "先上下卷动"
+msgstr "Rolling up and down"
+
+#: conf.c:1413
+msgid "先左右卷动"
+msgstr "Rolling left and right"
+
+#: conf.c:1423 conf.c:1437
+msgid "不显示"
+msgstr "Display none"
+
+#: conf.c:1425
+msgid "卷动时显示"
+msgstr "Display when rolling"
+
+#: conf.c:1427
+msgid "总是显示"
+msgstr "Always display"
+
+#: conf.c:1439
+msgid "阅读信息"
+msgstr "Text info"
+
+#: conf.c:1442
+msgid "歌词"
+msgstr "Read lyric"
+
+#: power.c:60
+msgid "[电源充电]"
+msgstr "[Power charging]"
+
+#: power.c:62
+msgid "[电源供电]"
+msgstr "[Power supply]"
+
+#: power.c:64
+msgid "[电量不足]"
+msgstr "[Power low]"
+
+#: scene_music.c:99
+msgid "从歌曲列表移除文件?"
+msgstr "Remove music from playlist?"
+
+#: scene_music.c:152
+msgid " ○删除 □下移 △上移 ×退出 START播放"
+msgstr " ○Delete □ Move down △ Move up ×Quit START Play"
+
+#: scene_music.c:155
+msgid "要添加乐曲请到文件列表选取音乐文件按○"
+msgstr "To add music please select music file and press ○ in filelist"
+
+#: scene_music.c:167
+msgid "音乐已关闭"
+msgstr "Music closed"
+
+#: scene_music.c:297
+#, c-format
+msgid "%u年%u月%u日  %s  %02u:%02u:%02u   CPU/BUS: %d/%d"
+msgstr "%u/%u/%u  %s  %02u:%02u:%02u   CPU/BUS: %d/%d"
+
+#: scene_music.c:310
+#, c-format
+msgid "%s  剩余电量: %d%%(%d小时%d分钟)  电池温度: %d℃   剩余内存: %dKB"
+msgstr "%s Battery remaining: %d%%(%d hour %d sec) Battery temp: %d℃ Free memory: %dKB"
+
+#: scene_music.c:315
+#, c-format
+msgid "%s  剩余电量: %d%%(%d小时%d分钟)  电池温度: %d℃"
+msgstr "%s  Battery remaining: %d%%(%d hour %d sec) Battery temp: %d℃"
+
+#: scene_music.c:320
+#, c-format
+msgid "[电源供电]   剩余内存: %dKB"
+msgstr "[Power supply]   Free memory: %dKB"
+
+#: scene_music.c:385 scene_music.c:389
+msgid "  SELECT 编辑列表   ←快速后退   →快速前进"
+msgstr "SELECT Edit playlist ←Fast backward → Fast forward"
+
+#: scene_music.c:399
+msgid "○播放/暂停 ×循环 □停止 △曲名编码  L上一首  R下一首"
+msgstr "○Play/Paused ×Cycle □Stop △Encoding  L Prev R Next"
+
+msgid "星期天"
+msgstr "Sunday"
+
+msgid "星期一"
+msgstr "Monday"
+
+msgid "星期二"
+msgstr "Tuesday"
+
+msgid "星期三"
+msgstr "Wednesday"
+
+msgid "星期四"
+msgstr "Thursday"
+
+msgid "星期五"
+msgstr "Friday"
+
+msgid "星期六"
+msgstr "Saturday"
+
+msgid "日期错误"
+msgstr "Week error"
+
+#: scene.c:2631
+msgid "        语言"
+msgstr "Language"
+
+#: scene.c:378
+msgid "输入GI值"
+msgstr "Enter GI"
+
+#: scene.c: 4012
+msgid "是否运行这个游戏?"
+msgstr "Run this game?"
+
+msgid "书签导入失败!"
+msgstr "Bookmark import failed!"
+
+msgid "书签导出失败!"
+msgstr "Bookmark export failed!"
+
+msgid "返回先前文件"
+msgstr "Return to prev file"
+
+msgid "压缩档案损坏或密码错误"
+msgstr "Corrupt archive or password incorrent"
+
+msgid "保存档案密码"
+msgstr "Save archive password"
+
+msgid "上"
+msgstr "Up"
+
+msgid "下"
+msgstr "Down"
+
+msgid "左"
+msgstr "Left"
+
+msgid "右"
+msgstr "Right"
+
+msgid "先上下滚动"
+msgstr "Scrolling up and down"
+
+msgid "先左右滚动"
+msgstr "Scrolling left and right"
+
+msgid "%.1f秒"
+msgstr "%.1f second"
+
+msgid "翻页滚动速度"
+msgstr "Page scrolling speed"
+
+msgid "翻页滚动间隔"
+msgstr "Page scrolling interval"
+
+msgid "  滚动条宽度"
+msgstr "Scrollbar width"
+
+msgid "矩形"
+msgstr "Rectangle"
+
+msgid "直线"
+msgstr "Line"
+
+msgid "TTF"
+msgstr "TTF font"
+
+msgid "点阵"
+msgstr "Lattice font"
+
+msgid "  信息栏样式"
+msgstr "Infobar style"
+
+msgid "  信息栏字体"
+msgstr "Infobar font"
+
+msgid "没有指定中、英文TTF字体"
+msgstr "Didn't specify Chinese or English TTF font"
+
+msgid "信息栏字体大小"
+msgstr "Infobar font size"
+
+msgid "编码"
+msgstr "Encode"
+
+msgid "压缩率"
+msgstr "Compress ratio"
+
+msgid "翻页滚动时长"
+msgstr "Page scrolling duration"
+
+msgid "缓存"
+msgstr "Cache"
+
+msgid "显示编码器信息"
+msgstr "Display encoder information"
+
+msgid "使用均衡器"
+msgstr "Equalizer"
+
+msgid "均衡器模式"
+msgstr "Equalizer Mode"
+
+msgid "声音补偿"
+msgstr "ALC MODE"
+
+msgid "    最大亮度"
+msgstr "Max Brightness"

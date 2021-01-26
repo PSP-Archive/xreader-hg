@@ -1,0 +1,22 @@
+如何编译xReader
+
+要求:
+正确安装pspdev.org的PSPToolchain并更新到最新的svn版本(svn://svn.ps2dev.org/psp/trunk/pspsdk)。安装automake(>=0.10)和autoconf(>=2.59)，
+
+输入: 
+
+aclocal && autoheader && automake --add-missing && autoconf 
+
+然后:
+
+./configure && make
+
+就能编译xReader。
+
+你也可以在一个单独的目录里编译xReader:
+
+mkdir ~/build
+cd ~/build
+/xreader/dir/configure && make
+
+这样会在build目录里生成xReader程序，而不会弄脏xReader源代码目录。

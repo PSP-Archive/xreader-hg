@@ -1,0 +1,260 @@
+PSPLINK v3.0
+为PSP自制软件开发的通用装载工具
+
+(c) TyRaNiD 2005/2006/2007
+(c) Julian T 2005/2006
+(c) Rasmus B 2006
+(c) John_K 2005
+
+翻译：hrimfaxi @ pspchina.net
+
+>>>>1. 介绍
+
+PSPLINK遵照BSD许可证，详见在PSPLINK根目录的LICENSE文件。
+
+本手册涵盖了设置PSPLINK用于开发的基本必需信息，以及对多种PSPLINK所提供功能的简单指导。本文假设读者了解编程的概念、能够安装pspdev.org的工具链(toolchain)和SDK，以及对PSP体系结构的基本了解。
+
+它到底是什么？
+
+PSPLINK是对装载器/应用程序开发工具的尝试成果，以避免每次调试后必须返回VSH。它提供一个命令解释器（shell)，通过USB通信，你可在它上面装载新应用程序，转储有用的系统信息，以及重置PSP启动另一个应用程序。你还可以使用一个简单的屏幕终端，通过PSP按键来访问一些PSPLINK功能。PSPLINK在挂载USB驱动后，你就可以复制新的可执行文件到记忆棒，然后运行。或者你也可以使用USB主机文件编排系统，它允许你直接从PC上执行PSP可执行文件。通过内置异常处理器所安装的为TTY输出做准备的stdio和kprintf处理器，它也消除了一些为执行可执行文件所需的中间代码（boilerplate code)的必要，基本实现了调试器和GDB服务器。
+
+PSPLINK的设计使普通用户模式应用程序能被以最简便的方式开发，不需要首先载入到内核。虽然它不是专门为开发内核软件而设计的，但它完全有能力做到这些，比如允许你实时检查系统的大多数部分（如当前已装载的模块和线程），从而使你对有关PSP内核如何运作有一些更深刻的理解.
+
+>>>>2. 安装
+
+如果你已经下载了PSPLINK的二进制发布的话这一节可以跳过。为了从源代码编译PSPLINK，你需要最新的pspdev.org工具链和PSPSDK。由于SDK的快速开发，PSPLINK也可能每天改变代码。只要你把工具全部设置正确后，就可以到源代码根目录里，输入：
+
+make release
+
+根据PSPLINK的版本复制PSPLINK到你的PSP。v1.0 和 v1.5在release目录下面，而OE（译者: 开放版本，也就是Dark_Alex的M33）版本在release_oe目录下面。注意可以通过把1.5版本和3.XOE版本的PSPLINK放在不同的目录（比如 GAME150和GAME3XX)来运行多个版本的PSPLINK。
+
+当你已经完成配置PSPLINK，请确认你的USB盘解除挂载，然后使用VSH运行记忆棒游戏菜单上名为PSPLINK的游戏。
+
+现在要编译usbhostfs_pc工具和pspsh。编译时参考usbhostfs_pc的那一节以获取更多信息。运行usbhostfs_pc工具，它应该提示它已连接了，然后运行另一个终端启动pspsh，'host0:/>'提示符将出现。
+
+>>>>3. 命令解释器
+
+PSPLINK被一个文字终端来控制，对某些人来说看起来有点神秘，但是它提供了所能具有的最简单，最可移植的接口。PSP的输出在这一层次上本质是以文本方式的，所以为什么不这样呢？没有技术原因能导致一个图形化界面的工具编写失败，它只是还没能完成而已。
+
+当你连接到了PSPLINK你会遇到提示符（如果你没有看见，就按一下回车它应该出现）。从这个提示你可以开始开始输入命令来装载、运行模块，操纵线程，对PSP当前屏幕进行截图等等。
+
+最简单的命令是help，输入这个然后按回车，它会给你命令的分类列表以及简介。现在就输入help <分类名>来得到在这一类中所有可用的命令。如果你对某一个命令感兴趣，就输入help <命令名字>，它将打印一些关于那个命令的更多信息，包括简介和参数。所有的命令都拥有缩写格式，可以用来代替全名。（举例来说help的缩写为单个字符'?'），所有的缩写都包括在帮助命令中。
+PSPLINK命令解释器解释并处理大多数你可能会预期的普通特性，如参数引用（用"或'封装参数），以及用\字符转义（对空格或在其它引号中的引号）。它也允许使用tab键自动完成文件名或者命令。
+使用命令解释器时有一些特殊按键序列能让生活更舒适。它们是ALT+R为重置，ALT+S为指令步进，ALT+K为指令跳过。
+你也在可以在命令解释器中使用环境变量，输入'env'打印当前列表。输入命令$(VARIABLE)将会被替换成名为VARIABLE的环境变量值。
+
+装载和运行模块
+
+PSPLINK的核心特性是拥有装载和运行模块的能力。在这里模块是指PRX（可重定位ELF文件）或一个PFX（不可重定位ELF文件，pspdev.org工具链缺省生成的）。PSPLINK的设计保证最少的内存被浪费，所以几乎所有的应用程序都能运行，如果所有的用户内存都需要的话可以关闭用户模式部分的PSPLINK（靠pluser初始化文件选项）。
+PSPLINK命令解释器提供一系列命令操纵模块，可是只有一部分在这里介绍（为其他可能的命令参见完整的命令列表）。
+最简单的方法装载和启动模块的方法是输入它的路径名到命令解释器。PSPLINK命令解释器维护了当前工作目录（显示在提示符上），所以如果文件在当前目录你就可以输入./filename.prx，就像你在大多数*nix命令解释器上做的那样。PSP文件系统同Windows驱动器结构相似。像记忆棒、闪存或主机都有一个驱动前缀名nameX：name是驱动名，X是驱动器号（通常为0）。PSPLINK认为路径是相对于当前驱动器，所以如果你在ms0:/PSP/GAME里，输入/sample.prx你会得到ms0:/sample.prx。当然你也可以输入带驱动器名的绝对路径，从另一个位置装载程序。PSPLINK也支持全局路径。如果你在提示符中输入一个程序名，没有任何目录'/'记号的话，它会尝试替你搜索路径。如果程序被找到了它就会被执行。
+一旦你启动模块，命令解释器将打印一些有用的信息，如你刚启动模块的UID和模块名。这些信息可以在以后用于检查模块信息。你的程序此时应该在运行中，执行你编码要它做的。PSPLINK还支持从命令行中传送参数给模块，就像你在其它命令解释器里所预期的那样。
+
+当你完成了对你的程序的调试,你有以下选项。最简单的是重置PSPLINK，回到一个好而干净的环境。靠reset命令来完成这个任务。你也可以停止一个模块（使用modstop），然后将它卸载出内存（使用modunld）。然而这样做可能留下一些空闲的线程，如果不停止它们的话会导致异常。另外一种方法是使用kill命令，它会停止你的模块，找出它的线程并删除它们，最终卸载模块。这样做可能把你的PSP留在一种未知的状态，所以正常情况下最好使用reset命令。还一件值得注意的是，缺省状态下如果应用程序调用了sceKernelExitGame()（比如说在一个退出回调(exit callback)中），PSPLINK会自动重置它自己。这个特性在psplink.ini文件中可以配置。
+
+>>>>4. 地址计算器
+
+PSPLINK包含了一些使用内存地址作为参数的命令，然而你可以且只可以用绝对地址作为参数。如果能传送一个被计算过的结果做为参数就更好了。PSPLINK支持一些标准操作符和特殊操作符来使计算地址能尽可能的简单。值得注意的是现在计算器除了括号外没有任何符号优先级，它只是严格的从左到右。这样的结果是像1+2*3的计算，在C中会等于7然而实际上在PSPLINK会等于9。如果你需要设置优先级，就要对优先的部分加上括号，所以1+(2*3)可以给你预期的答案。数字可以是十进制，八进制（以0为前缀），和十六进制（以0x为前缀）。以下是操作符和特殊命令的列表：
+
+操作符
++
+加法
+-
+减法
+*
+乘法
+/
+除法
+&
+位逻辑与
+|
+位逻辑或
+^
+位逻辑异或
+<<
+位逻辑左移
+>>
+位逻辑右移
+~
+位逻辑取反
+*
+求地址所指向的值
+<
+逻辑小于
+>
+逻辑大于
+<=
+逻辑小于等于
+>=
+逻辑大于等于
+&&
+逻辑与
+||
+逻辑或
+==
+逻辑相等
+!=
+逻辑不等
+()
+括号，指定优先级
+@Modulename@
+返回名为Modulename的模块代码段地址
+@Modulename:N@
+返回名为Modulename的模块的对应第N（从1到4）段地址（从SceKernelModuleInfo）。
+@Modulename:sN@
+返回名为Modulename的模块的对应第N（从1到4）段大小（从SceKernelModuleInfo）。
+@ModuleName:text@
+返回名为Modulename的模块代码段地址（与@ModuleName@同义）
+@ModuleName:stext@
+返回名为Modulename的模块代码段大小
+@ModuleName:sdata@
+返回名为Modulename的模块数据段大小
+@ModuleName:sbss@
+返回名为Modulename的模块BSS段大小
+@ModuleName:lib,name@
+返回指定模块中名为lib的库的函数名（NID或者名字）的地址
+%ThreadName%
+返回名为ThreadName的线程的入口地址
+%ThreadName:stack%
+返回名为ThreadName的线程的堆栈地址
+%ThreadName:sstack%
+返回名为ThreadName的线程的堆栈大小
+$reg
+如果有异常发生，返回以名为reg的CPU寄存器的值。reg是MIPS寄存器的常见助记符，比如 $a0，$v0还有$epc为异常程序计数器，$fsr为FPU状态/控制寄存器。$mod返回发生异常的模块的基地址。
+
+例子：
+memdump @PSPLINK@+0x100 – 打印从PSPLINK模块基址+256开始的内存内容
+savemem $a0 100 memdump.bin – 从上次异常中a0寄存器中所指向地址开始，保存长度为100字节的内存内容到memdump.bin。
+calc $epc-$mod – 计算异常中发生异常代码的相对地址，从模块基地址开始算起，在开发PRX程序时确定传送到psp-addr2line的地址参数。
+
+>>>>5. 异常与调试
+
+对于C/C++编程来说，有一个很不幸的事实：你不可避免会使你的程序崩溃。当一个异常发生后，PSP的缺省行为就是在4秒钟内关机，这对跟踪你的问题没有什么帮助。PSPLINK安装了一个异常处理器，会为你捕捉常见的错误，如访问无效内存地址。当异常发生后，PSPLINK会捕捉到它，然后显示寄存器列表与其它有用的信息。下面是一个例子：
+
+Exception - Breakpoint
+Thread ID - 0x04D2091D
+Th Name   - NetSample
+Module ID - 0x04D3430F
+Mod Name  - NetSample
+EPC       - 0x088215DC
+Cause     - 0x00000024
+Status    - 0x20008613
+BadVAddr  - 0x00000000
+zr:0x00000000 at:0x0008FF00 v0:0x00000000 v1:0x00000001
+a0:0x00000001 a1:0x09FBFE40 a2:0x00000000 a3:0x00000000
+t0:0x0882E45C t1:0x00000006 t2:0x00000000 t3:0x0882E450
+t4:0x0000000E t5:0x0882C6F0 t6:0x08823D54 t7:0x00008600
+s0:0x00000008 s1:0x09FBFE44 s2:0x00000001 s3:0x09FBFEF0
+s4:0x00000008 s5:0x00000013 s6:0xDEADBEEF s7:0xDEADBEEF
+t8:0x00000000 t9:0x0005D470 k0:0x09FBFF00 k1:0x00000000
+gp:0x08834B30 sp:0x09FBFE40 fp:0x09FBFEB0 ra:0x08820DC8
+
+这个异常转储告诉你当崩溃发生时处理器处于什么样的状态，异常类型，在哪个线程崩溃（如果有的话），还有在哪个模块地址空间崩溃（如果有的话）。一旦发生了异常你可以在寻址模式中用$reg选项看看为什么你的代码崩溃了。
+在这些场合下内置反汇编器是一个有用的特性。如果你输入disasm $epc它会反汇编崩溃现场的指令。从这里你可以断定哪个寄存器可能导致了崩溃，然后使用命令如peekw得memdump检查内存。
+你也使用step命令一条指令一条指令的步进，或者使用skip指令跳过jal函数调用指令。调试器可以用于跟踪多线程程序，PSPLINK支持多达16个的线程上下文，可以用exectx命令来选择。对调试来说只用到当前上下文。如果你不想用GDB话，它对于基本需要还是相当简单容易的。记住非常重要的一件事：不要在模块的入口地址放置断点。如果你这样做会导致PSPLINK死机，因为它正在等待ModuleStart调用完成，而后者将永远不能完成。如果要调试你的程序，确保在第一个创建的线程中断你的程序（比如在main函数里放置断点）。
+PSPLINK也支持使用PSP的CPU内置硬件调试器。使用bpset命令选项来完成这个任务。
+
+>>>>6. 用GDB来调试
+
+有时使用内置指令级调试器来调试还不够，这就是PSPLINK的GDB服务器派上用场的地方。GDB（GNU调试器）是一个PC程序,可以直接连接到远程计算机，进行源代码级调试，你会需要编译一个PC版本的面向PSP的GDB来使用这个功能，可以用pspdev.org的工具链脚本来完成编译工作。你也可以编译一个Insight调试器（实际上是GDB加上一个简单的GUI）。开启调试信息，编译你的程序（比如，在编译和链接你的代码时使用-g开关），然后复制一个版本（剪裁或不剪裁）到PSP，使用命令debug program.elf [arg]来开始调试。这样做就会开启GDB服务器，装载 program.elf（如果指定了参数还要加入），然后在你的PSP IP地址端口6999上监听，或设置从USB进行通信。
+在PC上运行psp-gdb program.elf，然后输入命令target remote: 10001。GDB应该能连接上，指出当前程序停止在_start例程中。
+现在你可以正常使用GDB了，在你的代码里设置断点，检视数据等等。在这里警告：不要尝试在_start例程里步进，这样做只会惹麻烦。在main函数里设置断点(break main），然后输入'c'来开始调试程序。它将会在你的起始线程的开始处停下。当你完成调试后你可以输入kill来重置PSPLINK或者你可以输入detach，然后被调试的程序将继续运行。
+PSPLINK GDB服务器应该能够调试ELF和PRX两种文件（然而确认你已经安装了最新发布的PSPSDK，以便PRX文件能正确工作）。（译者：PSP 3.X OE核心不支持调试ELF文件）
+
+>>>>7. 脚本支持
+
+PSPLINK支持十分基础的脚本命令。一个PSPLINK的脚本就是一段文本文件，包括了一系列顺序执行的命令。脚本还支持参数传递，参数被'$'字符和后面一个数字所指定。$0指脚本被运行的位置。于以前版本的PSPLINK不同，如今PSPLINK完全运行在本地了。用%命令（如: % /path/to/script)你可以运行一段脚本，你也可以把脚本名作为参数送给PSPLINK来运行它们，或者为脚本加入可执行权限，并在文件开始处插入'#!/path/to/pspsh（PSPSH的路径）'（UNIX sh的形式）。
+
+>>>>8. USB主机文件编排系统(USB Host filing system)
+
+PSPLINK引入了一个USB协议驱动，用来同一台PC主机相互通信，来建立一个主机文件编排系统(host filing system)。这个主机文件编排系统被导出为一个新的IO驱动器 hostX: （在这里X是从0到7），所以你一旦已经安装好了驱动和PC端，你就可以立即访问你的PC上的文件，好像它们就在ms0或flash0上。
+对于PC端来说你首先需要安装PC工具，它们在usbhostfs_pc目录里。为了构建它们你也需要libusb的已编译版本，用来从用户空间与驱动相交流。libusb主页指出它可以 绝大多数的类*nix操作系统上运行，如Linux, FreeBSD, MacOSX，还有Windows。在Windows上安装需要Cygwin，还有PSPLINK自带一个已经准备好的驱动程序和库以便你在第一时间能够使用。如何做到这些在以下专门一节介绍。
+对类UNIX平台来说usbhostfs_pc可以用make来构建，如果你在Cygwin里构建，你应该输入make BUILD_WIN32=1。在Unix系统里usbhostfs_pc需要以root用户身份来运行，这样libusb才能访问USB总线，推荐的方法是改变usbhostfs_pc文件所有人为root，并且设置SUID位（比如: chown root:root usbhostfs_pc; chmod +s usbhostfs_pc）usbhostfs_pc将会在不需要的时候放弃权限，这也意味着任何被usbhostfs_pc创建的文件将属于你而不是root。做为一个奖励，如果你想要简单的基于Readline的命令解释器的话，输入make READLINE_SHELL=1来构建usbhostfs_pc。
+注意：在Windows下你还需要安装一个驱动来使libusb运作。当你插入你的PSP，在上面运行PSPLINK时，Windows应该会提示发现新硬件向导，选下一步，当问到时选为驱动指定安装位置，指向你PSPLINK目录的Windows驱动目录，就能成功安装了。
+最后一步就是运行usbhostfs_pc，如果一切正常，它应该打印一行已经连接到设备的提示。你应该能到PSPLINK的host0:/目录，打印目录或者运行从PC直接PSP程序。
+主机文件编排系统驱动支持最多8个驱动映射，从host0:到host7:。缺省情况下所有的文件编排系统的根目录均为PC程序的当前目录，如果你想要改变它们的话你可以指定路径作为PC程序的参数。比如 ./usbhostfs_pc /usr/local/pspdev/psp/sdk/sample /home/user/psp_work 将把host0:映射为PSPSDK样例目录，host1:映射为/home/user_psp_work。
+
+其它的有用选项如下 ：
+-v : 烦琐模式，显示关于哪些文件、目录正在被打开。
+-vv : 更加烦琐模式，显示尽可能多的信息。
+-b port : 设置本地主机的TCP命令程序解释器端口
+-d : 显示同GDB的往来流量
+-c : 开启大小写不敏感模式。忽略大小写，尝试以最接近的结果匹配文件名和目录名。对运行在记忆棒上的软件（它们对大小不敏感），然而PC上的文件却具有混杂的大小写的情况有用。
+-m : 自动转换'/'为'\'
+-f filename : 从文件中装载驱动器映射。文件的格式是每行都像数字=路径。比如4=/home/user/projects会把host4映射为/home/user/projects。
+-p pid : 指定产品ID用于USB连接。允许你使用多个PSP通过USB在同一台电脑上。你还应该指定-b改变TCP源端口，还有每台PSP上的psplink.ini文件中的PID选项。
+-t timeout: 指定USB等待超时时间，以毫秒计算 （对某些系统有用）
+-g : 为TCP异步通道指定公开绑定 (缺省只为本地主机)
+-h : 显示帮助。
+
+一旦usbhostfs_pc开始运行，你可以使用一个简单的命令解释器来控制一些程序的大体设置，而不用重启它。可用的命令为：
+help : 显示帮助列表
+drives : 显示当前驱动器映射
+mount num path : 挂载目录路径path到主机号num. 例如， mount 0 /usr/local 将会把/usr/local映射到host0。
+load mapfile : 装载驱动器映射文件，这个文件的格式同-f选项所指定的文件参数一样。
+save mapfile : 保存驱动器映射到文件
+nocase on|off : 设置大小写模式开关. 如果没有用到参数将会显示当前模式。
+gdbdebug on|off : 打开GDB协议调试（同-d开关）。
+msslash on|off : 自动转换'/'为'\' (同-m开关)。
+verbose num : 设置烦琐模式，num为1同-v一样，num为2同-vv一样。
+exit : 退出usbhostfs_pc。
+
+>>>>9. 示例
+这是编译PSPLINK所兼容的可执行程序，并且利用USB文件编排系统在命令解释器里运行它的一个示例。
+1.从PSPSDK编译gu/sprite示例。假设你已经正确的安装了工具链，只需进入/usr/local/pspdev/psp/sdk/sample/gu/sprite目录，输入make。（译者：如果是PSP 3.X OE，请直接跳到第八步）
+2.启动PSPLINK。
+3.运行命令usbhostfs_pc /usr/local/pspdev/psp/sdk/samples/gu/sprite来启动PC端的hostfs驱动。你应该看到一行已经连接到设备的提示。
+4.运行命令pspsh以连接到PSPLINK命令解释器。你应该看到提示符host0:/> 显示在你的终端上。输入ls，然后应该能打印出sprite示例目录里的内容，包括可执行文件sprite.elf。
+5.在命令解释器输入 ./sprite.elf，按回国键。PSPLINK应该显示关于它所运行的模块的一点信息，然后PSP屏幕上应该出现sprite示例的运行画面。
+6.输入modinfo "@Sprite Sample"来打印模块信息。注意TextAddr的值为0x8900000，清楚的说明了这是一个PFX文件。
+7.现在输入reset，重置PSPLINK，返回一个好的开始。
+8.尝试建立sprite示例为PRX文件。编辑Makefile，添加BUILD_PRX=1在ASFLAGS行之后，输入make clean; make。你会在当前目录得到一个sprite.prx。注意：在3.XOE上运行代码只支持PRX文件，这点很重要。
+9.输入./sprite.prx来运行它。再次运行modinfo命令，注意到TextAddr已经完全的变化了。
+10.最终输入exit，PSP将会退回PSP的VSH菜单。
+
+>>>>10. USB HostFS for Windows
+
+注意本节只对那些想要在Windows构建USB驱动的人所准备的。在Windows上构建HOSTFS的PC端（还有命令解释器和gdb 服务器）比在Unix上复杂的多。按以下步骤完成。
+
+1.确信你已经安装好Cygwin环境还有编译器等等。从http://libusb-win32.sourceforge.net/下载最新的libusb-win32设备驱动snapshot版本，看起来像libusb-win32-device-bin-XXXXXX.tar.gz一样的东西。
+2.解压libusb包到某处，解压PSPLINK到Cygwin能访问的某处。从解压目录里复制include/usb.h和lib/gcc/libusb.a到usbhostfs_c目录。
+3.在你的PSP上安装PSPLINK.确信usbhost选项设置为1,启动PSPLINK，用USB线连上PSP与PC。
+4.Windows应该要求安装一个名为'PSP Type-B'的设备，现在忽略它。去解压的libusb目录中的bin目录，运行inf-wizard.exe程序。点击下一步，你应该看到以下对话框。
+5.确定显示PSP Type B，选择它点下一步。
+6.在下一个对话框确定信息看起来是正确的，然后再点下一步。
+7.现在它将请求inf文件的输出地址。浏览到libusb bin目录，将其命名为psp.inf，这样将创建为安装驱动所需的文件。
+8.现在回到我们早些时候被忽略的Windows设备安装对话框里。选择自己浏览驱动目录，然后指向libusb bin目录，Windows应该正确的找到你的设备驱动并安装它。
+9.在Cygwin中进入usbhostfs_pc目录，并输入make。你会得到一些警告，但仍然得到一个可执行文件。如果它声称没有找到usb.h或者libusb，你应该确认一下你在第2步已经复制了它们。注意在Windows上没有需要设置SUID位或任何东西，然而你还是几乎需要以系统管理员身份运行。
+10.当PSPLINK连接上usbhostfs_pc.exe，文字'Connected to detvice'应该被显示在终端。现在用你最喜爱的命令解释器方法连接，你就可以打印host目录列表了。如果你想要用usbshell（你已经设置usbshell选项为1),你现在可以用pspsh连接本地网络地址，见到USB shell。如果你没有看到提示符，按一下回车它应该出现。
+
+>>>>11. FAQ/疑难杂症
+1.在MAC OSX上可能有奇怪的死机，总线错误等等。当使用USB hostfs系统时：这看起来像是一个常见的libusb bug，导致无穷无尽的问题。可能值得试一下这种版本的libusb http://www.ellert.se/twain-sane/能否能修复它。
+2.当装载内核模式程序时，PSPLINK有时不能正确重置：PSPLINK并不是设计用来专门开发内核模块的。据说它应该可能做到开发内核程序，可是你注意到内存饥饿还有一些其他讨厌的东西。如果你在这方面有问题，尝试关闭所有多余的功能如USB驱动，回归到一个SIO命令解释器上。使用最少的内存可能有帮助。
+
+>>>>12. 词汇表
+
+术语
+描述
+ELF
+可执行可链接格式。一种被工具接口标准委员会（TIS）所批准的文件格式，被用来做为PSP的可执行对象。
+PRX
+Playstation可重定位可执行文件。一种特殊格式的ELF文件，没有被链接到固定位置。PSP内核能够在装载时改变可执行文件在内存中的位置。
+PFX
+Playstation固定可执行文件。一种特殊格式的ELF文件，被链接到固定位置。当PSP内核装载这种可执行文件时，它会尝试把它载入到指定的地址。如果这不可能装载就会失败。这是PSPSDK的缺省输出格式，也就是普通的ELF文件。
+Module
+在这里Module(模块)指的是PSP内核能够载入内存，并且能执行的任何可执行文件（PRX或者PRX）。
+SIO
+串行IO，一个术语，指通过串口与设备相通信。
+
+>>>>13. 法律
+Playstation, Playstation Portable, 还有PSP是Sony Computer Entertainment的注册商标。
+PSPLINK的作者同Sony Computer Entertainment没有任何关系。
+本软件没有任何担保。尽管应该不会损坏你的硬件，然而它不对任何东西出错负任何责任。后果自负。
+不要问我使用如何用PSPLINK来盗版PSP软件，不关我的事，如果我可以制止它的话我早做了。
+
+>>>>14. 鸣谢
+
+感谢Hitmen和groepaz，提供给我特别有用的信息。
+感谢pspdev.org存放这个东西
+感谢Nil实现了原始的SIO电缆，感谢Marcus Comstedt提供了硬件信息。
+还要感谢那些费心来测试代码和提供建议的人，不分先后顺序：Oobles，dot_blank， ginka， sharkus，Shazz，nullp01nter，johnmph，logix，urchin， jimp。

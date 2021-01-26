@@ -1,0 +1,65 @@
+#!/bin/bash
+# @configure_input@
+
+function copy {
+	echo "    $(basename $1)"
+	cp -u "$1" "$DESTDIR/"
+}
+
+DIRS=(msg fonts)
+BUILDDIR="@abs_top_builddir@/src"
+SRCDIR="@abs_top_srcdir@/src"
+DESTDRIVE="${1:-/media/disk}"
+DESTDIR="$DESTDRIVE/PSP/GAME/xReader"
+DEBUG=y
+
+echo "Checking if PSP plugged in"
+
+while [ ! -e "$DESTDRIVE" ]; do
+	sleep 1
+done
+
+echo "Creating directories"
+
+for dir in ${DIRS[@]}; do
+	echo "    Create dir: $DESTDIR/$dir"
+	mkdir -p "$DESTDIR/$dir"
+done
+
+echo "    Copy files"
+
+copy_list=( "$BUILDDIR/EBOOT.PBP" \
+		"$BUILDDIR/../xrPrx/xrPrx.prx" \
+		"$BUILDDIR/../cooleyesBridge/cooleyesBridge.prx" \
+		"$BUILDDIR/../xr_rdriver/xr_rdriver.prx" \
+		"$SRCDIR/../fonts/fonts.zip" \
+		"$SRCDIR/../Readme.txt" \
+		"$SRCDIR/../Changelog.txt" \
+		"$SRCDIR/../resource/bg.png" \
+		)
+
+copy_msg_list=(
+		"$SRCDIR/../msg/zh_CN.so" \
+		"$SRCDIR/../msg/zh_TW.so" \
+		"$SRCDIR/../msg/en_US.so" \
+		)
+
+if [ x"$DEBUG" = xy ]; then
+	copy "$BUILDDIR/xReader.prx"
+fi
+
+for file in ${copy_list[@]}; do
+	copy "$file" "$DESTDIR/"
+done
+
+for file in ${copy_msg_list[@]}; do
+	copy "$file" "$DESTDIR/msg/"
+done
+
+touch "$DESTDIR"
+sync
+sudo umount "$DESTDRIVE"
+
+while test ! $? -eq 0; do
+	sudo umount "$DESTDRIVE"
+done

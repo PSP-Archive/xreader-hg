@@ -1,0 +1,5 @@
+To compile:
+
+Need boost library
+export BOOST_HOME=/path/to/boost
+make -f makefile.psp psp-lib clean psp-lib

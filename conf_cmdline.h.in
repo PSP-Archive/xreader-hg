@@ -1,0 +1,3 @@
+#pragma once
+
+#define CONFIGURE_CMDLINE	"@CONFIGURE_CMDLINE@"

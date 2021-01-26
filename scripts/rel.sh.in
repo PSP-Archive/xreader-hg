@@ -1,0 +1,72 @@
+#!/bin/sh
+# @configure_input@
+
+AUTHOR=hrimfaxi
+EMAIL=outmatch@gmail.com
+DIRS="msg fonts"
+SRCDIR=@abs_top_srcdir@/src
+BUILDDIR=@abs_top_builddir@/src
+ROOTDIR=@abs_top_builddir@/rar
+DESTDIR=@abs_top_builddir@/rar/PSP/GAME/xReader
+DESTDIR2=@abs_top_builddir@/rar/seplugins
+LITE=n
+
+echo "xReader transfer script"
+echo "Author: $AUTHOR($EMAIL)"
+
+rm -rf $ROOTDIR
+rm -rf $DESTDIR
+rm -rf $DESTDIR2
+
+mkdir -p $ROOTDIR
+mkdir -p $DESTDIR
+mkdir -p $DESTDIR2
+
+for dir in $DIRS
+do
+	echo "    Create dir: $DESTDIR/$dir"
+	mkdir -p "$DESTDIR/$dir"
+done
+
+echo "OK, now we copy files"
+
+FILELIST="
+$BUILDDIR/EBOOT.PBP
+$BUILDDIR/../xrPrx/xrPrx.prx
+$BUILDDIR/../cooleyesBridge/cooleyesBridge.prx
+$SRCDIR/../fonts/fonts.zip
+$SRCDIR/../Readme.txt
+$SRCDIR/../Changelog.txt
+"
+
+for file in $FILELIST
+do
+	echo "        `basename $file`"
+	cp -u "$file" "$DESTDIR/"
+done
+
+cp -u "$BUILDDIR/../xr_rdriver/xr_rdriver.prx" "$DESTDIR2/"
+echo "        cooleyesBridge.prx"
+
+if [ x$LITE != xy ]; then
+	echo "        bg.png"
+	cp -u "$SRCDIR/../resource/bg.png" "$DESTDIR/"
+	echo "        fonts.conf"
+	cp -u "$SRCDIR/../resource/fonts.conf" "$DESTDIR/"
+fi
+
+TRANSLIST="
+$SRCDIR/../msg/zh_CN.so
+$SRCDIR/../msg/zh_TW.so
+$SRCDIR/../msg/en_US.so
+"
+
+for file in $TRANSLIST
+do
+	echo "        `basename $file`"
+	cp -u "$file" "$DESTDIR/msg"
+done
+
+cd "$ROOTDIR"
+rar a -r -m5 xReader.rar *
+
